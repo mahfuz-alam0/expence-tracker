@@ -1,13 +1,22 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createTransaction } from "../features/transaction/transactionSlice";
 
 export default function Form() {
 
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [amount, setAmount] = useState(0);
+    const dispatch = useDispatch();
+    const {isLoading, isError, } = useSelector(state => state.transaction)
 
     const handleCreate = (e) =>{
         e.preventDefault()
+        dispatch(createTransaction({
+            name,
+            type,
+            amount: Number(amount)
+        }))
     }
 
 
@@ -21,6 +30,8 @@ export default function Form() {
                     <input
                         type="text"
                         name="name"
+                        required
+                        value={name}
                         placeholder="Enter title..."
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -32,6 +43,7 @@ export default function Form() {
                         <input
                             type="radio"
                             value="income"
+                            required
                             name="transaction_type"
                             checked={type === "income"}
                             onChange={() => setType("income")}
@@ -57,13 +69,18 @@ export default function Form() {
                         type="number"
                         placeholder="300"
                         name="amount"
+                        value={amount}
                         onChange={e => setAmount(e.target.value)}
                     />
                 </div>
 
-                <button className="btn">Submit</button>
+                <button disabled={isLoading} className="btn">Submit</button>
 
             </form>
+            {
+                isError &&
+                <p className="error">There Was an error occerd</p>
+            }
 
             <button className="btn cancel_edit">Cancel Edit</button>
         </div>
