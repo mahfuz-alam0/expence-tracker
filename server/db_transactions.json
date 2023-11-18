@@ -1,28 +1,16 @@
 {
   "transactions": [
     {
-      "id": 1,
-      "name": "Salary from Google",
-      "type": "income",
-      "amount": 1000000
-    },
-    {
-      "id": 2,
-      "name": "Family Expenses",
-      "type": "expense",
-      "amount": 200000
-    },
-    {
-      "name": "test income",
-      "type": "income",
-      "amount": 5000,
-      "id": 3
-    },
-    {
       "name": "Car genius",
       "type": "income",
-      "amount": 1000,
-      "id": 4
+      "amount": 25120,
+      "id": 1
+    },
+    {
+      "name": "sell pc",
+      "type": "income",
+      "amount": 10000,
+      "id": 3
     }
   ]
 }
